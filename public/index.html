@@ -25,6 +25,8 @@
         const canvas = document.getElementById("myCanvas");
         const ctx = canvas.getContext("2d");
 
+        let gameStarted = false;
+
         let x = canvas.width / 2;
         let y = canvas.height - 30;
         let dx = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
@@ -126,7 +128,22 @@
             ctx.closePath();
         }
 
-        function draw() {
+        function drawStartScreen() {
+            ctx.font = "40px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("OG's Brick Break", 240, 120);
+            ctx.font = "20px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("Press any key to start", 240, 220);
+            ctx.font = "12px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("Controls: Use the left and right arrow keys or mouse to control the paddle", 240, 270);
+            if(gameStarted) {
+                drawGame();
+            }
+        }
+
+        function drawGame() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawPaddle();
             drawBricks();
@@ -165,6 +182,13 @@
         document.addEventListener("keydown", keyDownHandler, false);
         document.addEventListener("keyup", keyUpHandler, false);
         document.addEventListener("mousemove", mouseMoveHandler, false);
+        document.addEventListener("keydown", startGame, false)
+
+        function startGame(e) {
+            if (e) {
+                drawGame();
+            }
+        }
 
         function keyDownHandler(e) {
             if (e.key === "Right" || e.key === "ArrowRight") {
@@ -189,7 +213,7 @@
             }
         }
 
-        draw();
+        drawStartScreen();
     </script>
 </body>
 
