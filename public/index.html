@@ -144,7 +144,7 @@
             ctx.fillText("Press any key to start", 240, 220);
             ctx.font = "12px Arial";
             ctx.textAlign = "center";
-            ctx.fillText("Controls: Use the left and right arrow keys or mouse to control the paddle", 240, 270);
+            ctx.fillText("Controls: Use the left and right arrow keys to control the paddle", 240, 270);
         }
 
         function drawGameOverScreen() {
@@ -210,7 +210,6 @@
 
         document.addEventListener("keydown", keyDownHandler, false);
         document.addEventListener("keyup", keyUpHandler, false);
-        document.addEventListener("mousemove", mouseMoveHandler, false);
 
         function startGame(e) {
             if (e && currentGameState === 0) {
@@ -238,13 +237,6 @@
                 rightPressed = false;
             } else if (e.key === "Left" || e.key === "ArrowLeft") {
                 leftPressed = false;
-            }
-        }
-
-        function mouseMoveHandler(e) {
-            const relativeX = e.clientX - canvas.offsetLeft;
-            if (relativeX > 0 && relativeX < canvas.width) {
-                paddleX = relativeX - paddleWidth / 2;
             }
         }
 
